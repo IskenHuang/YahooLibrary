@@ -10,8 +10,6 @@
 
 #import "TouchXML.h"
 
-#import "SBJson.h"
-
 #import "YahooAPI.h"
 
 @implementation AppDelegate
@@ -35,8 +33,6 @@
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:[UIViewController new]];
-    self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     return YES;
 }
