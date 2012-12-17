@@ -23,4 +23,11 @@ typedef enum{
 + (NSMutableDictionary *) yahooAPIWeatherWithWOEID:(NSString *)woeid;
 + (NSMutableDictionary *) yahooAPIWeatherWithWOEID:(NSString *)woeid unit:(YAHOO_WEATHER_UNIT)unit;
 
+
+/*
+ woeid
+ */
++ (NSMutableDictionary *) yahooAPIWOEIDWithLatitude:(double)latitude Longitude:(double)longitude;
++ (NSMutableDictionary *) yahooAPIWOEIDWithAddress:(NSString *)address;
+
 @end

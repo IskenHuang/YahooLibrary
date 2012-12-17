@@ -8,8 +8,6 @@
 
 #import "AppDelegate.h"
 
-#import "MasterViewController.h"
-
 #import "TouchXML.h"
 
 #import "SBJson.h"
@@ -24,25 +22,19 @@
     [self grabRSSFeed:@"http://weather.yahooapis.com/forecastrss?w=2502265&u=c"];
     NSInteger t2 = [[NSDate date] timeIntervalSince1970];
     NSLog(@"sec: %d", t2-t1);
-    
-    //sbjson
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    NSURL *_connection = [NSURL URLWithString:@"http://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20woeid%3D12703518%20AND%20u%3D%22c%22&format=json"];
-    [request setURL:_connection]; 
-    [request setHTTPMethod:@"GET"];
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    SBJsonParser *jsonParser = [SBJsonParser new];
-    NSLog(@"JSON => %@", [jsonParser objectWithString:string]);
-    
-    //yahoo
+        
+    //yahoo weather
     NSLog(@"%@", [YahooAPI yahooAPIWeatherWithWOEID:@"12703518"]);
+    NSLog(@"%@", [YahooAPI yahooAPIWeatherWithWOEID:@"12703518" unit:YAHOO_WEATHER_UNIT_CELSIUS]);
+    NSLog(@"%@", [YahooAPI yahooAPIWeatherWithWOEID:@"12703518" unit:YAHOO_WEATHER_UNIT_FAHRENHEIT]);
+    
+    //yahoo woeid
+    NSLog(@"%@", [YahooAPI yahooAPIWOEIDWithLatitude:25.049826 Longitude:121.572586]);
+    NSLog(@"%@", [YahooAPI yahooAPIWOEIDWithAddress:@"台北市大安區敦化南路二段267號"]);
+        
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-
-//    MasterViewController *masterViewController = [[MasterViewController alloc] initWithNibName:@"MasterViewController" bundle:nil];
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:[UIViewController new]];
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
